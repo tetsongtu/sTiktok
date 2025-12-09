@@ -13,12 +13,14 @@
 	}
 </script>
 
-<div class="fixed flex flex-col gap-4 right-4 top-1/2 -translate-y-1/2">
+<div
+	class="fixed hidden md:flex flex-col gap-4 right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+>
 	{#each btns as dir}
 		<button
 			on:click={() => scroll(dir)}
-			class="size-12 flex items-center justify-center
-            rounded-full bg-gray-100 cursor-pointer font-bold text-xl"
+			class="size-12 font-bold text-xl rounded-full
+			bg-gray-100 cursor-pointer pointer-events-auto"
 		>
 			O
 		</button>
