@@ -11,8 +11,8 @@
 	];
 </script>
 
-<aside class="px-4 py-2 flex flex-col gap-2 items-start {className}">
-	<div class="pointer-events-auto">
+<aside class="px-4 py-2 items-start {className}">
+	<div class="pointer-events-auto flex flex-col gap-2">
 		<header
 			id="Logo"
 			class=" h-16 py-4 px-1.5 rounded-2xl text-3xl font-bold cursor-pointer
@@ -49,7 +49,7 @@
 			{/each}
 		</nav>
 
-		<div class=" px-1 py-2 mb-1 w-full">
+		<div id="Login" class=" px-1 py-2 mb-1 w-full">
 			<button
 				class="w-full p-1.5 bg-rose-500 rounded-lg
 				text-white text-lg font-semibold cursor-pointer
