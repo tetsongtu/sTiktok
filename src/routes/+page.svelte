@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
 	import video from '$lib/assets/dance.mp4';
+	import ActionButton from '$lib/components/ActionButton.svelte';
+	import { useAutoPlay } from '$lib/actions/useAutoPlay';
+
 	const users = [
 		[
 			{ icon: 'O', label: 'Profile' },
@@ -19,27 +22,17 @@
 </script>
 
 {#each users as user}
-	<div class=" min-h-screen aspect-[9/16] snap-start p-14 sm:p-4">
-		<div class="relative h-full">
-			<video class="h-full object-cover rounded-2xl cursor-pointer" loop autoplay muted src={video}>
+	<div class="min-h-screen snap-start p-14 sm:p-4">
+		<div class="relative h-full aspect-[9/16]">
+			<video
+				class="h-full w-full object-cover rounded-2xl cursor-pointer"
+				use:useAutoPlay
+				loop
+				muted
+				src={video}
+			>
 			</video>
-			<div id="ActionButton" class="absolute flex flex-col gap-1.5 bottom-0 -right-13.5">
-				{#each user as item}
-					<div class="flex flex-col items-center gap-0.5">
-						<span
-							class="size-10 md:size-12 font-bold text-3xl
-							rounded-full bg-gray-200 cursor-pointer
-							flex items-center justify-center"
-						>
-							{item.icon}
-						</span>
-
-						<span class="text-sm font-bold text-gray-600 select-none">
-							{item.label}
-						</span>
-					</div>
-				{/each}
-			</div>
+			<ActionButton items={user} />
 		</div>
 	</div>
 {/each}
