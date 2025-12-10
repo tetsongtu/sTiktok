@@ -19,22 +19,11 @@
 </script>
 
 {#each users as user}
-	<div class="h-screen aspect-[9/16] snap-start">
-		<div class="relative bg-gray-100 w-full">
-			<div class="h-screen p-14 sm:p-4 relative">
-				<video
-					class="h-full object-cover rounded-2xl cursor-pointer"
-					loop
-					autoplay
-					muted
-					src={video}
-				></video>
-			</div>
-			<div
-				id="ActionButton"
-				class="absolute flex flex-col gap-1.5
-			bottom-10 sm:bottom-0 right-0 sm:-right-10"
-			>
+	<div class=" min-h-screen aspect-[9/16] snap-start p-14 sm:p-4">
+		<div class="relative h-full">
+			<video class="h-full object-cover rounded-2xl cursor-pointer" loop autoplay muted src={video}>
+			</video>
+			<div id="ActionButton" class="absolute flex flex-col gap-1.5 bottom-0 -right-13.5">
 				{#each user as item}
 					<div class="flex flex-col items-center gap-0.5">
 						<span
