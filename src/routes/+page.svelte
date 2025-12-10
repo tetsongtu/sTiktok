@@ -1,35 +1,56 @@
 <script>
-	const items = [
-		{ icon: 'O', label: 'Profile' },
-		{ icon: 'O', label: '120.8K' },
-		{ icon: 'O', label: '1480' },
-		{ icon: 'O', label: '6866' },
-		{ icon: 'O', label: '7446' }
+	import video from '$lib/assets/dance.mp4';
+	const users = [
+		[
+			{ icon: 'O', label: 'Profile' },
+			{ icon: 'O', label: '120.8K' },
+			{ icon: 'O', label: '1480' },
+			{ icon: 'O', label: '6866' },
+			{ icon: 'O', label: '7446' }
+		],
+		[
+			{ icon: 'O', label: 'Profile2' },
+			{ icon: 'O', label: '98.3K' },
+			{ icon: 'O', label: '1200' },
+			{ icon: 'O', label: '5400' },
+			{ icon: 'O', label: '6500' }
+		]
 	];
 </script>
 
-<div id="video" class="aspect-[9/16] rounded-2xl snap-start">
-	<div class="h-screen p-25 sm:p-4 relative">
-		<div class="bg-gray-500 h-full rounded-2xl cursor-pointer"></div>
-		<div
-			class="absolute bottom-3.5 -right-13.5
-			 flex flex-col gap-1.5"
-		>
-			{#each items as item}
-				<div class="flex flex-col items-center gap-1">
-					<button
-						class="size-10 md:size-12 font-bold text-3xl
-					rounded-full bg-gray-200 cursor-pointer
-					flex items-center justify-center"
-					>
-						{item.icon}
-					</button>
+{#each users as user}
+	<div class="h-screen aspect-[9/16] snap-start">
+		<div class="relative bg-gray-100 w-full">
+			<div class="h-screen p-14 sm:p-4 relative">
+				<video
+					class="h-full object-cover rounded-2xl cursor-pointer"
+					loop
+					autoplay
+					muted
+					src={video}
+				></video>
+			</div>
+			<div
+				id="ActionButton"
+				class="absolute flex flex-col gap-1.5
+			bottom-10 sm:bottom-0 right-0 sm:-right-10"
+			>
+				{#each user as item}
+					<div class="flex flex-col items-center gap-0.5">
+						<span
+							class="size-10 md:size-12 font-bold text-3xl
+							rounded-full bg-gray-200 cursor-pointer
+							flex items-center justify-center"
+						>
+							{item.icon}
+						</span>
 
-					<span class="text-sm font-bold text-gray-600 select-none">
-						{item.label}
-					</span>
-				</div>
-			{/each}
+						<span class="text-sm font-bold text-gray-600 select-none">
+							{item.label}
+						</span>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
-</div>
+{/each}

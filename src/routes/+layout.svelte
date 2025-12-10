@@ -12,14 +12,16 @@
 </svelte:head>
 
 <div class="flex">
-	<Sidebar className="fixed pointer-events-none" />
+	<Sidebar
+		className="fixed z-10 pointer-events-none bg-white
+		border-r lg:border-r-0 border-gray-200 h-screen"
+	/>
 
 	<div
 		id="MainContent"
 		class="flex-1 flex flex-col items-center
 		h-screen overflow-y-auto snap-y snap-mandatory"
 	>
-		{@render children()}
 		{@render children()}
 	</div>
 
