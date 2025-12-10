@@ -1,14 +1,20 @@
 <script lang="ts">
-	export let items: { icon: string; label: string }[] = [];
+	export let data;
+	const users = [
+		{ icon: 'O', label: data.user.nickname },
+		{ icon: 'O', label: data.likes_count },
+		{ icon: 'O', label: data.comments_count },
+		{ icon: 'O', label: 'bookmark' },
+		{ icon: 'O', label: data.shares_count }
+	];
 </script>
 
 <div
-	id="ActionButton"
 	class="absolute bottom-0 right-0 translate-x-full
 	       flex flex-col bg-black/50"
 >
 	<div class="absolute bottom-0 left-2 flex flex-col gap-2">
-		{#each items as item}
+		{#each users as item}
 			<div class="flex flex-col items-center gap-0.5">
 				<span
 					class="size-10 md:size-12 font-bold text-3xl

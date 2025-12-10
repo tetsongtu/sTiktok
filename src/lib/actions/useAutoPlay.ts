@@ -1,25 +1,26 @@
-export function useAutoPlay(node: HTMLVideoElement) {
-    let userPaused = false; // user tự bấm pause
+export function useAutoPlay(video: HTMLVideoElement) {
+    let isPaused = false;
 
+    // auto play
     const observer = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting && !userPaused) node.play();
-        else node.pause();
+        if (e.isIntersecting && !isPaused) video.play();
+        else video.pause();
     }, { threshold: 0.6 });
 
-    observer.observe(node);
+    observer.observe(video);
 
     // toggle play/pause
     const toggle = () => {
-        userPaused = !node.paused;
-        userPaused ? node.pause() : node.play();
+        isPaused = !isPaused;
+        isPaused ? video.pause() : video.play();
     };
 
-    node.addEventListener("click", toggle);
+    video.addEventListener("click", toggle);
 
     return {
         destroy() {
             observer.disconnect();
-            node.removeEventListener("click", toggle);
+            video.removeEventListener("click", toggle);
         }
     };
 }
