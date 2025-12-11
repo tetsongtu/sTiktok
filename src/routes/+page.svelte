@@ -3,7 +3,7 @@
 	import ActionButton from '$lib/components/ActionButton.svelte';
 	import { useAutoPlay } from '$lib/actions/useAutoPlay';
 	import { fetchVideo, type VideoData } from '$lib/api/fetchVideo';
-	import { infiniteScrollTrigger } from '$lib/actions/videoObserver';
+	import { infiniteScroll } from '$lib/actions/infiniteScroll';
 
 	let videos: VideoData[] = [];
 	let isLoading = false;
@@ -44,8 +44,9 @@
 				use:useAutoPlay
 				loop
 				muted
+				controls
 				src={video.file_url}
-				use:infiniteScrollTrigger={() => {
+				use:infiniteScroll={() => {
 					if (i === videos.length - 1) void loadNextVideoBatch();
 				}}
 			></video>

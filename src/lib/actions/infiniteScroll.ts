@@ -1,4 +1,4 @@
-export function infiniteScrollTrigger(
+export function infiniteScroll(
     node: HTMLElement,
     callback?: () => void,
     enabled = true
