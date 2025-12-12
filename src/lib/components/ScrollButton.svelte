@@ -13,9 +13,7 @@
 	}
 </script>
 
-<div
-	class="fixed hidden md:flex flex-col gap-4 right-4 top-1/2 -translate-y-1/2 pointer-events-none"
->
+<div class="relative right-4 hidden md:flex flex-col justify-center gap-4">
 	{#each btns as dir}
 		<button
 			on:click={() => scroll(dir)}

@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import ScrollButton from '$lib/components/ScrollButton.svelte';
+	import CommentPanel from '$lib/components/CommentPanel.svelte';
 
 	let { children } = $props();
 </script>
@@ -47,5 +48,8 @@
 		</div>
 	</div>
 
-	<ScrollButton />
+	<div class="fixed top-0 right-0 flex h-screen pointer-events-none">
+		<ScrollButton />
+		<CommentPanel />
+	</div>
 </div>
