@@ -1,8 +1,6 @@
 <script lang="ts">
 	import CommentItem from '$lib/components/CommentItem.svelte';
 	import { commentOpen } from '$lib/stores/comment';
-
-	const closePanel = () => commentOpen.set(false);
 </script>
 
 <div
@@ -16,7 +14,7 @@
 			<div>Comments</div>
 			<button
 				class="flex items-center justify-center w-7 h-7 rounded-full bg-gray-200 cursor-pointer hover:bg-gray-100"
-				on:click={closePanel}>x</button
+				on:click={() => commentOpen.set(false)}>x</button
 			>
 		</header>
 

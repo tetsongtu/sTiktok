@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { commentOpen } from '$lib/stores/comment';
-	export let data;
+	import { type VideoData } from '$lib/api/fetchVideo';
+	export let data: VideoData;
 
 	const users = [
 		{ icon: 'O', label: data.user.nickname },
@@ -10,8 +11,12 @@
 		{ icon: 'O', label: data.shares_count }
 	];
 
-	function handleCommentClick() {
-		commentOpen.update((open) => !open);
+	function toggleComment() {
+		commentOpen.update((open) => {
+			const newOpen = !open;
+			history.pushState(null, '', newOpen ? `@/${data.user.nickname}/video/${data.id}` : '/');
+			return newOpen;
+		});
 	}
 </script>
 
@@ -26,7 +31,7 @@
 					class="size-10 md:size-12 font-bold text-3xl
 						   rounded-full bg-gray-200 cursor-pointer
 						   flex items-center justify-center"
-					on:click={item.type === 'comment' ? handleCommentClick : undefined}
+					on:click={item.type === 'comment' ? toggleComment : undefined}
 				>
 					{item.icon}
 				</button>
