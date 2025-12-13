@@ -1,12 +1,13 @@
+import { activeVideoId } from '$lib/stores/activeVideo';
+
 let interacted = false;
 
 export function useAutoPlay(video: HTMLVideoElement) {
-
-    // auto play
     const observer = new IntersectionObserver(([e]) => {
         if (e.isIntersecting) {
             video.play();
             if (interacted) video.muted = false;
+            activeVideoId.set(Number(video.dataset.videoId ?? 0));
         } else {
             video.pause();
         }

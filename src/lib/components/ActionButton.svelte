@@ -12,11 +12,7 @@
 	];
 
 	function toggleComment() {
-		commentOpen.update((open) => {
-			const newOpen = !open;
-			history.pushState(null, '', newOpen ? `@/${data.user.nickname}/video/${data.id}` : '/');
-			return newOpen;
-		});
+		commentOpen.update((open) => !open);
 	}
 </script>
 
