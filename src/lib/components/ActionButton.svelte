@@ -3,15 +3,15 @@
 	import { type VideoData } from '$lib/api/fetchVideo';
 	import { goto } from '$app/navigation';
 
-	let { data }: { data: VideoData } = $props();
+	export let data: VideoData
 
-	const users = $derived([
+	const users = [
 		{ icon: 'O', label: data.user.nickname, type: 'profile' },
 		{ icon: 'O', label: data.likes_count },
 		{ icon: 'O', label: data.comments_count, type: 'comment' },
 		{ icon: 'O', label: 'bookmark' },
 		{ icon: 'O', label: data.shares_count }
-	]);
+	];
 
 	function gotoProfile() {
 		goto(`/profile`);

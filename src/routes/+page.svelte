@@ -21,15 +21,13 @@
 
 	onMount(loadVideos);
 
-	$effect(() => {
-		if (reset.value) {
-			videos = [];
-			loadVideos()
-			reset.value = false
-		}
+	const reloadHomeFeed = () => {
+		videos = [];
+		loadVideos()
+		reset.value = false
+	}
 
-		if (!activeVideo.id) return;
-
+	const syncCommentUrl = () => {
 		const video = videos.find((v) => v.id === activeVideo.id);
 		if (!video) return
 
@@ -37,10 +35,18 @@
 			? `/@${video.user.nickname}/video/${video.id}`
 			: '/';
 		
-		if (window.location.pathname !== url) {
+			if (window.location.pathname !== url) {
 			history.replaceState(null, '', url)
 		} 
-	});
+	};
+
+	$effect(() => {
+		if (reset.value) reloadHomeFeed()
+
+		if (!activeVideo.id) return;
+		syncCommentUrl()
+	}
+)
 </script>
 
 {#each videos as video, i (video.id)}
