@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { commentOpen } from '$lib/stores/comment';
+	import { comment } from '$lib/stores/index.svelte';
 	import { type VideoData } from '$lib/api/fetchVideo';
-	export let data: VideoData;
+	import { goto } from '$app/navigation';
 
-	const users = [
-		{ icon: 'O', label: data.user.nickname },
+	let { data }: { data: VideoData } = $props();
+
+	const users = $derived([
+		{ icon: 'O', label: data.user.nickname, type: 'profile' },
 		{ icon: 'O', label: data.likes_count },
 		{ icon: 'O', label: data.comments_count, type: 'comment' },
 		{ icon: 'O', label: 'bookmark' },
 		{ icon: 'O', label: data.shares_count }
-	];
+	]);
 
-	function toggleComment() {
-		commentOpen.update((open) => !open);
+	function gotoProfile() {
+		goto(`/profile`);
 	}
 </script>
 
@@ -27,7 +29,11 @@
 					class="size-10 md:size-12 font-bold text-3xl
 						   rounded-full bg-gray-200 cursor-pointer
 						   flex items-center justify-center"
-					on:click={item.type === 'comment' ? toggleComment : undefined}
+					onclick={item.type === 'profile'
+						? gotoProfile
+						: item.type === 'comment'
+							? () => (comment.open = !comment.open)
+							: undefined}
 				>
 					{item.icon}
 				</button>

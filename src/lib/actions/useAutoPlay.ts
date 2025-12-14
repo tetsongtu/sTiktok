@@ -1,4 +1,4 @@
-import { activeVideoId } from '$lib/stores/activeVideo';
+import { activeVideo } from '$lib/stores/index.svelte';
 
 let interacted = false;
 
@@ -7,7 +7,7 @@ export function useAutoPlay(video: HTMLVideoElement) {
         if (e.isIntersecting) {
             video.play();
             if (interacted) video.muted = false;
-            activeVideoId.set(Number(video.dataset.videoId ?? 0));
+            activeVideo.id = Number(video.dataset.videoId ?? 0);
         } else {
             video.pause();
         }

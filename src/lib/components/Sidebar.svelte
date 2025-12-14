@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { reset,comment } from '$lib/stores/index.svelte';
+
 	export let className: string = '';
 	const menus = [
 		{ icon: 'O', label: 'For You' },
@@ -14,7 +17,11 @@
 <aside class="px-4 py-2 {className}">
 	<div class="pointer-events-auto flex flex-col gap-1 items-start">
 		<header class="p-0.5 py-4 text-3xl font-bold">
-			<div
+			<button
+				on:click={() => {
+					comment.open = false
+					reset.value = true
+				}}
 				class="flex items-center transition-all duration-300
 				hover:text-[2.05rem] cursor-pointer h-8"
 			>
@@ -25,7 +32,7 @@
 					O
 				</div>
 				<span class="hidden lg:inline">LogO</span>
-			</div>
+			</button>
 		</header>
 
 		<div id="Search" class="relative flex font-semibold">
@@ -74,7 +81,7 @@
 			</button>
 		</div>
 
-		<footer class="hidden lg:flex flex-col gap-2">
+		<footer class="hidden lg:flex flex-col gap-2 w-full">
 			<div class="mt-1 border-t border-gray-200 w-full"></div>
 			<nav
 				class=" p-1 flex flex-col gap-1

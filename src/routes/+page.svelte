@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { activeVideoId } from '$lib/stores/activeVideo';
-	import { commentOpen } from '$lib/stores/comment';
+	import { activeVideo, comment, reset } from '$lib/stores/index.svelte';
 	import ActionButton from '$lib/components/ActionButton.svelte';
 	import { useAutoPlay } from '$lib/actions/useAutoPlay';
 	import { infiniteScroll } from '$lib/actions/infiniteScroll';
 	import { loadNextVideoBatch } from '$lib/services/videoService';
 	import { type VideoData } from '$lib/api/fetchVideo';
+	import ScrollButton from '$lib/components/ScrollButton.svelte';
+	import CommentPanel from '$lib/components/CommentPanel.svelte';
 
-	let videos: VideoData[] = [];
-	let isLoading = false;
+	let videos: VideoData[] = $state([]);
+	let isLoading = $state(false);
 
 	const loadVideos = async () => {
 		if (isLoading) return;
@@ -20,14 +21,26 @@
 
 	onMount(loadVideos);
 
-	// Cập nhật URL theo video active và trạng thái comment
-	$: if ($activeVideoId) {
-		const video = videos.find((v) => v.id === $activeVideoId);
-		if (video) {
-			const url = $commentOpen ? `/@${video.user.nickname}/video/${video.id}` : '/';
-			if (window.location.pathname !== url) history.replaceState(null, '', url);
+	$effect(() => {
+		if (reset.value) {
+			videos = [];
+			loadVideos()
+			reset.value = false
 		}
-	}
+
+		if (!activeVideo.id) return;
+
+		const video = videos.find((v) => v.id === activeVideo.id);
+		if (!video) return
+
+		const url = comment.open
+			? `/@${video.user.nickname}/video/${video.id}`
+			: '/';
+		
+		if (window.location.pathname !== url) {
+			history.replaceState(null, '', url)
+		} 
+	});
 </script>
 
 {#each videos as video, i (video.id)}
@@ -49,3 +62,8 @@
 		</div>
 	</div>
 {/each}
+
+<div class="z-10 fixed top-0 right-0 flex h-screen pointer-events-none">
+	<ScrollButton />
+	<CommentPanel />
+</div>
