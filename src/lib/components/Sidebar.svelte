@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { reset,comment } from '$lib/stores/index.svelte';
+	import { reset, comment } from '$lib/stores/index.svelte';
 
 	export let className: string = '';
 	const menus = [
@@ -12,16 +12,19 @@
 		{ icon: 'O', label: 'Profile' },
 		{ icon: '...', label: 'More' }
 	];
+
+	function goHomeAndReset() {
+		goto('/');
+		if (comment.open) comment.open = false;
+		reset.value = true;
+	}
 </script>
 
 <aside class="px-4 py-2 {className}">
 	<div class="pointer-events-auto flex flex-col gap-1 items-start">
 		<header class="p-0.5 py-4 text-3xl font-bold">
 			<button
-				on:click={() => {
-					comment.open = false
-					reset.value = true
-				}}
+				onclick={goHomeAndReset}
 				class="flex items-center transition-all duration-300
 				hover:text-[2.05rem] cursor-pointer h-8"
 			>
