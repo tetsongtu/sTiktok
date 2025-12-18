@@ -1,8 +1,9 @@
 <script lang="ts">
+	import ProfileNav from '$lib/components/ProfileNav.svelte';
 </script>
 
-<div class="ml-52 w-[77%] mt-5 flex flex-col gap-6">
-	<div id='ProfileHeader' class="flex items-center gap-6">
+<div class="ml-71 w-[78.5%] mt-5 mx-auto flex flex-col gap-6">
+	<div id="ProfileHeader" class="flex items-center gap-6">
 		<div
 			class="flex items-center justify-center size-54
 	rounded-full bg-gray-200 cursor-pointer"
@@ -46,22 +47,5 @@
 		</div>
 	</div>
 
-	<div id='ProfileNav' class="relative flex justify-between">
-		<div class="flex">
-			<div class="px-12 hover:border-b cursor-pointer">
-				<span>O</span>
-				<span>Videos</span>
-			</div>
-			<div class="px-12 hover:border-b cursor-pointer">
-				<span>O</span>
-				<span>Liked</span>
-			</div>
-		</div>
-		<div class="flex bg-gray-200 rounded-md p-0.5">
-			<button class="px-3 py-1 font-semibold hover:bg-white rounded-sm">Latest</button>
-			<button class="px-3 py-1 font-semibold hover:bg-white rounded-sm">Popular</button>
-			<button class="px-3 py-1 font-semibold hover:bg-white rounded-sm">Oldest</button>
-		</div>
-		<div class="absolute top-0 left-0 w-full border-b border-gray-200 mt-10"></div>
-	</div>
+	<ProfileNav />
 </div>
