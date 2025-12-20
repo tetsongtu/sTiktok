@@ -1,11 +1,15 @@
 export interface User {
     nickname: string;
     avatar: string;
+    followers_count: number;
+    followings_count: number;
+    likes_count: number;
 }
 
 export interface VideoData {
     id: number;
     file_url: string;
+    description: string;
     likes_count: number;
     comments_count: number;
     shares_count: number;

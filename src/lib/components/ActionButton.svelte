@@ -3,7 +3,7 @@
 	import { type VideoData } from '$lib/api/fetchVideo';
 	import { goto } from '$app/navigation';
 
-	export let data: VideoData
+	export let data: VideoData;
 
 	const users = [
 		{ icon: 'O', label: data.user.nickname, type: 'profile' },
@@ -14,7 +14,7 @@
 	];
 
 	function gotoProfile() {
-		goto(`/profile`);
+		goto(`/@${data.user.nickname}?video=${data.id}`);
 	}
 </script>
 

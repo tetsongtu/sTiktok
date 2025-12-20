@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { hoverPlay } from '$lib/actions/hoverPlay';
+
+	export let video: string;
 	type Tab = 'videos' | 'liked';
 
 	let activeTab: Tab = 'videos';
@@ -66,9 +69,13 @@
 		</div>
 	</div>
 
-	{#if activeTab === 'videos'}
-		<div>📹 Video list</div>
-	{:else}
-		<div>❤️ Liked videos</div>
-	{/if}
+	<div class="flex flex-wrap gap-4 gap-y-6">
+		{#if activeTab === 'videos'}
+			{#each Array(1) as _}
+				<video src={video} muted class="w-49 h-65 rounded-xl object-cover" use:hoverPlay></video>
+			{/each}
+		{:else}
+			<div>❤️ Liked videos</div>
+		{/if}
+	</div>
 </div>
