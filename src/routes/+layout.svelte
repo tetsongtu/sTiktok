@@ -2,10 +2,12 @@
 	import './layout.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
+	import ZoomWarning from '$lib/components/ZoomWarning.svelte';
 
 	let { children } = $props();
 </script>
 
+<ZoomWarning />
 <div class="flex">
 	<Sidebar
 		className="fixed z-10 pointer-events-none bg-white
