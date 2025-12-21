@@ -10,8 +10,9 @@
 
 <side-drawer
 	use:clickOutside
-	class="fixed left-0 top-0 w-80 h-full border-r border-gray-200 bg-white z-10
-	transform transition-transform duration-300 ease-in-out"
+	class="fixed left-18 top-0 w-80 h-full border-r border-gray-200 z-10
+	transform translate-all duration-500 ease-in-out opacity-0 bg-white"
+	class:opacity-100={search.open}
 	class:-translate-x-full={!search.open}
 >
 	<h2 class="pl-2">Search</h2>
