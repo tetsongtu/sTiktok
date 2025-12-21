@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { reset, comment } from '$lib/stores/index.svelte';
+	import { reset, comment, search } from '$lib/stores/index.svelte';
+	import SearchPanel from './SearchPanel.svelte';
 
 	export let className: string = '';
 	const menus = [
@@ -46,6 +47,7 @@
 			>
 			<div class=" absolute hidden lg:flex">
 				<input
+					onclick={() => (search.open = !search.open)}
 					class="px-10 w-52 h-10 outline-none text-gray-600 bg-gray-100 rounded-full"
 					placeholder="Search"
 				/>
@@ -97,3 +99,5 @@
 		</footer>
 	</div>
 </aside>
+
+<SearchPanel />
