@@ -9,7 +9,7 @@
 <div class="flex">
 	<Sidebar
 		className="fixed z-10 pointer-events-none bg-white
-		border-r lg:border-r-0 border-gray-200 h-screen"
+		border-r lg:border-r-0 border-gray-200 h-screen lg:w-60"
 	/>
 
 	<div

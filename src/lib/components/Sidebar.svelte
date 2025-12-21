@@ -61,15 +61,14 @@
 			</div>
 		</div>
 
-		<nav id="Menus">
+		<nav class="w-full flex flex-col mt-1.5" id="Menus">
 			{#each menus as item}
 				<div
-					class="flex items-center gap-4 p-2 rounded-lg
-						font-semibold text-lg w-full lg:w-52 cursor-pointer
-						hover:bg-gray-100 hover:text-red-500"
+					class="flex items-center gap-4 p-2 rounded-lg cursor-pointer
+		font-semibold text-lg hover:bg-gray-100 hover:text-red-500 w-full"
 				>
-					<span class="mx-1">{item.icon}</span>
-					<span class="hidden lg:flex">{item.label}</span>
+					<span class="flex items-center justify-center size-6">{item.icon}</span>
+					<span class="hidden lg:flex whitespace-nowrap">{item.label}</span>
 				</div>
 			{/each}
 		</nav>
