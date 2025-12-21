@@ -8,6 +8,7 @@
 	import { type VideoData } from '$lib/api/fetchVideo';
 	import ScrollButton from '$lib/components/ScrollButton.svelte';
 	import CommentPanel from '$lib/components/CommentPanel.svelte';
+	import { replaceState } from '$app/navigation';
 
 	let videos: VideoData[] = $state([]);
 	let isLoading = $state(false);
@@ -34,7 +35,7 @@
 		const url = comment.open ? `/@${video.user.nickname}/video/${video.id}` : '/';
 
 		if (window.location.pathname !== url) {
-			history.replaceState(null, '', url);
+			replaceState(url, '');
 		}
 	};
 
@@ -58,7 +59,7 @@
 				controls
 				src={video.file_url}
 				use:infiniteScroll={() => {
-					if (i === videos.length - 1) void loadVideos();
+					if (i >= videos.length - 1) void loadVideos();
 				}}
 			></video>
 			<ActionButton data={video} />
