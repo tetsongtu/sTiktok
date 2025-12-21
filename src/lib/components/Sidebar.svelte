@@ -35,47 +35,49 @@
 				>
 					O
 				</div>
-				<span class="hidden lg:inline">LogO</span>
+				<span class={search.open ? 'hidden' : 'hidden lg:inline'}>LogO</span>
 			</button>
 		</header>
 
-		<div id="Search" class="relative flex font-semibold">
-			<button
-				class="z-10 bg-gray-100 rounded-full size-10
-			hover:bg-gray-200 lg:hover:bg-transparent
-			cursor-pointer lg:cursor-default">O</button
+		<button
+			onclick={() => (search.open = !search.open)}
+			class={`flex items-center font-semibold
+			rounded-full bg-transparent lg:bg-gray-100 cursor-pointer
+			${search.open ? 'w-10' : 'w-full'}`}
+		>
+			<div
+				class="size-10 flex items-center justify-center
+				rounded-full hover:bg-gray-200 lg:hover:bg-transparent"
 			>
-			<div class=" absolute hidden lg:flex">
-				<input
-					onclick={() => (search.open = !search.open)}
-					class="px-10 w-52 h-10 outline-none text-gray-600 bg-gray-100 rounded-full"
-					placeholder="Search"
-				/>
-				<button
-					class="absolute top-1/2 -translate-y-1/2 right-0 z-10
-				flex items-center justify-center size-10"
-				>
-					<span
-						class="cursor-pointer hover:bg-gray-200 rounded-full size-5 flex items-center justify-center"
-						>x</span
-					>
-				</button>
+				O
 			</div>
-		</div>
+			<div class={`${search.open ? 'hidden' : 'hidden lg:flex'} flex-1 items-center `}>
+				<div class="text-black/30">Search</div>
+				<div
+					class="size-10 hover:bg-gray-200 rounded-full
+					flex items-center justify-center ml-auto"
+				>
+					x
+				</div>
+			</div>
+		</button>
 
-		<nav class="w-full flex flex-col mt-1.5" id="Menus">
+		<nav class="w-full flex gap-1.5 flex-col mt-1.5" id="Menus">
 			{#each menus as item}
 				<div
-					class="flex items-center gap-4 p-2 rounded-lg cursor-pointer
-		font-semibold text-lg hover:bg-gray-100 hover:text-red-500 w-full"
+					class={`flex items-center gap-4 p-2 rounded-lg cursor-pointer
+					font-semibold text-lg hover:bg-gray-100 hover:text-red-500
+					${search.open ? 'w-10' : 'w-full lg:w-52'} h-10`}
 				>
 					<span class="flex items-center justify-center size-6">{item.icon}</span>
-					<span class="hidden lg:flex whitespace-nowrap">{item.label}</span>
+					<span class={`${search.open ? 'hidden' : 'hidden lg:flex'} whitespace-nowrap`}
+						>{item.label}</span
+					>
 				</div>
 			{/each}
 		</nav>
 
-		<div id="Login" class=" px-1 py-2 mb-1 w-full hidden lg:block">
+		<div id="Login" class={`px-1 py-2 mb-1 w-full ${search.open ? 'hidden' : 'hidden lg:block'}`}>
 			<button
 				class="w-full p-1.5 bg-rose-500 rounded-lg
 				text-white text-lg font-semibold cursor-pointer
