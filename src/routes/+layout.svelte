@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import Sidebar from '$lib/components/Sidebar.svelte';
+	import Tooltip from '$lib/components/Tooltip.svelte';
 
 	let { children } = $props();
 </script>
@@ -25,12 +26,14 @@
 			rounded-full p-2 flex items-center h-12 font-semibold"
 		>
 			{#each ['Get Coins', 'Get App'] as item}
-				<button
-					class="flex gap-1 items-center cursor-pointer hover:bg-gray-100 rounded-full px-2 h-full"
-				>
-					<span class="flex size-4 items-center justify-center">O</span>
-					<span class="hidden xl:inline"> {item} </span>
-				</button>
+				<Tooltip className="xl:hidden" content={item}>
+					<button
+						class="flex gap-1 items-center cursor-pointer hover:bg-gray-100 rounded-full px-2 h-full"
+					>
+						<span class="flex size-4 items-center justify-center">O</span>
+						<span class="hidden xl:inline"> {item} </span>
+					</button>
+				</Tooltip>
 			{/each}
 			<div class="border-l border-gray-200 h-5 mx-2"></div>
 			<button
