@@ -37,7 +37,7 @@
 				</Tooltip>
 			{/each}
 			<div class="border-l border-gray-200 h-5 mx-2"></div>
-			<Button variant className="px-4.5" rounded>Log in</Button>
+			<Button primary className="px-4.5" rounded>Log in</Button>
 		</div>
 	</div>
 </div>

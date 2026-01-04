@@ -80,7 +80,7 @@
 			</nav>
 
 			<div id="Login" class={`px-1 py-2 mb-1 w-full ${search.open ? 'hidden' : 'hidden lg:block'}`}>
-				<Button variant className="w-full">Log in</Button>
+				<Button primary className="w-full">Log in</Button>
 			</div>
 		</div>
 
@@ -90,9 +90,9 @@
 				class=" p-1 flex flex-col gap-1
 			text-gray-500 font-semibold"
 			>
-				<div class="cursor-pointer hover:text-gray-600">Company</div>
-				<div class="cursor-pointer hover:text-gray-600">Program</div>
-				<div class="cursor-pointer hover:text-gray-600">Terms & Policies</div>
+				<Button text>Company</Button>
+				<Button text>Program</Button>
+				<Button text>Terms & Policies</Button>
 				<small class="text-xs">© 2025 TikTok</small>
 			</nav>
 		</footer>
