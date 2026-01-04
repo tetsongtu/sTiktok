@@ -2,8 +2,8 @@
 	let showWarning = $state(false);
 
 	const checkZoom = () => {
-		const getZoomRatio = () => window.innerWidth / screen.width;
-		const isDefaultZoom = Math.abs(getZoomRatio() - 1) < 0.01;
+		const zoomLevel = Math.round((window.devicePixelRatio || 1) * 100);
+		const isDefaultZoom = zoomLevel === 100;
 		showWarning = !isDefaultZoom;
 	};
 

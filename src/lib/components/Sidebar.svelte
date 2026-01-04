@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { reset, comment, search } from '$lib/stores/index.svelte';
+	import Button from './Button.svelte';
 	import SearchPanel from './SearchPanel.svelte';
 
 	export let className: string = '';
@@ -62,29 +63,25 @@
 			</div>
 		</button>
 
-		<nav class="w-full flex gap-1.5 flex-col mt-1.5" id="Menus">
-			{#each menus as item}
-				<div
-					class={`flex items-center gap-4 p-2 rounded-lg cursor-pointer
-					font-semibold text-lg hover:bg-gray-100 hover:text-red-500
+		<div class="text-lg font-semibold">
+			<nav class="w-full flex gap-1.5 flex-col mt-1.5" id="Menus">
+				{#each menus as item}
+					<div
+						class={`flex items-center gap-4 p-2 rounded-lg cursor-pointer
+					  hover:bg-gray-100 hover:text-red-500
 					${search.open ? 'w-10' : 'w-full lg:w-52'} h-10`}
-				>
-					<span class="flex items-center justify-center size-6">{item.icon}</span>
-					<span class={`${search.open ? 'hidden' : 'hidden lg:flex'} whitespace-nowrap`}
-						>{item.label}</span
 					>
-				</div>
-			{/each}
-		</nav>
+						<span class="flex items-center justify-center size-6">{item.icon}</span>
+						<span class={`${search.open ? 'hidden' : 'hidden lg:flex'} whitespace-nowrap`}
+							>{item.label}</span
+						>
+					</div>
+				{/each}
+			</nav>
 
-		<div id="Login" class={`px-1 py-2 mb-1 w-full ${search.open ? 'hidden' : 'hidden lg:block'}`}>
-			<button
-				class="w-full p-1.5 bg-rose-500 rounded-lg
-				text-white text-lg font-semibold cursor-pointer
-				hover:bg-rose-600"
-			>
-				Log in
-			</button>
+			<div id="Login" class={`px-1 py-2 mb-1 w-full ${search.open ? 'hidden' : 'hidden lg:block'}`}>
+				<Button variant className="w-full">Log in</Button>
+			</div>
 		</div>
 
 		<footer class="hidden lg:flex flex-col gap-2 w-full">

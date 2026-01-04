@@ -3,6 +3,7 @@
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import ZoomWarning from '$lib/components/ZoomWarning.svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	let { children } = $props();
 </script>
@@ -24,25 +25,19 @@
 
 	<div id="Header Action" class="fixed right-6 top-6 text-sm hidden md:block">
 		<div
-			class="ring-1 ring-gray-100 shadow-md
-			rounded-full p-2 flex items-center h-12 font-semibold"
+			class="h-12 ring-1 ring-gray-100 shadow-md
+			rounded-full p-2 flex items-center font-semibold"
 		>
 			{#each ['Get Coins', 'Get App'] as item}
 				<Tooltip className="xl:hidden" content={item}>
-					<button
-						class="flex gap-1 items-center cursor-pointer hover:bg-gray-100 rounded-full px-2 h-full"
-					>
+					<Button className="gap-1 px-2" rounded>
 						<span class="flex size-4 items-center justify-center">O</span>
 						<span class="hidden xl:inline"> {item} </span>
-					</button>
+					</Button>
 				</Tooltip>
 			{/each}
 			<div class="border-l border-gray-200 h-5 mx-2"></div>
-			<button
-				class="rounded-full bg-rose-500 text-white px-4.5 h-full hover:bg-rose-600 cursor-pointer"
-			>
-				Log in
-			</button>
+			<Button variant className="px-4.5" rounded>Log in</Button>
 		</div>
 	</div>
 </div>
