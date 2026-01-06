@@ -3,7 +3,7 @@
 
 	import ProfileNav from '$lib/components/ProfileNav.svelte';
 	import { page } from '$app/state';
-	import { fetchVideo } from '$lib/api/fetchVideo';
+	import { fetchVideoMock } from '$lib/api/fetchVideo';
 	import { type VideoData } from '$lib/api/fetchVideo';
 
 	let videoId = page.url.searchParams.get('video');
@@ -11,7 +11,7 @@
 	let data: VideoData | null = null;
 
 	onMount(async () => {
-		data = await fetchVideo(Number(videoId));
+		data = await fetchVideoMock(Number(videoId));
 	});
 </script>
 

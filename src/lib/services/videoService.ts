@@ -1,15 +1,23 @@
 import { fetchVideo, type VideoData } from '$lib/api/fetchVideo';
+import { mockVideoList } from '$lib/mock/mockVideos';
 import { getUniqueRandomIds } from '$lib/utils/random';
 
 export const pickVideoIds = (count: number, max: number, existing: Set<number>) => {
     return getUniqueRandomIds(count, max, existing);
 };
 
+// FETCH VIDEOS BY 
 export const fetchVideosByIds = async (ids: number[]): Promise<VideoData[]> => {
-    const fetched = await Promise.all(ids.map(fetchVideo));
+    // const fetched = await Promise.all(ids.map(fetchVideo));
+    const fetched = await Promise.all(ids.map(fetchVideoMock));
     return fetched.filter((v): v is VideoData => !!v);
 };
 
+export const fetchVideoMock = async (id: number): Promise<VideoData | null> => {
+    return mockVideoList.find(v => v.id === id) ?? null;
+};
+
+// LOAD NEXT VIDEO BATCH
 export const loadNextVideoBatch = async (
     videos: VideoData[],
     count: number,

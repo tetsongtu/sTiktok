@@ -23,3 +23,9 @@ export function fetchVideo(id: number): Promise<VideoData | null> {
         .catch(() => null);
 }
 
+import { mockVideoList } from '$lib/mock/mockVideos';
+export function fetchVideoMock(id: number): Promise<VideoData | null> {
+    return Promise.resolve(
+        mockVideoList.find(v => v.id === id) ?? null
+    );
+}
