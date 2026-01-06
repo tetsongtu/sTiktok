@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { reset, comment, search } from '$lib/stores/index.svelte';
-	import Button from './Button.svelte';
 	import SearchPanel from './SearchPanel.svelte';
+	import Button from './Button.svelte';
+	import Text from './Text.svelte';
 
 	export let className: string = '';
 	const menus = [
@@ -90,9 +91,9 @@
 				class=" p-1 flex flex-col gap-1
 			text-gray-500 font-semibold"
 			>
-				<Button text>Company</Button>
-				<Button text>Program</Button>
-				<Button text>Terms & Policies</Button>
+				<Text>Company</Text>
+				<Text>Program</Text>
+				<Text>Terms & Policies</Text>
 				<small class="text-xs">© 2025 TikTok</small>
 			</nav>
 		</footer>
