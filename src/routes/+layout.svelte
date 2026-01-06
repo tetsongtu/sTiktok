@@ -1,6 +1,6 @@
 <script lang="ts">
 	import './layout.css';
-	import Sidebar from '$lib/components/Sidebar.svelte';
+	import Sidebar from '$lib/layouts/Sidebar.svelte';
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import ZoomWarning from '$lib/components/ZoomWarning.svelte';
 	import Button from '$lib/components/Button.svelte';

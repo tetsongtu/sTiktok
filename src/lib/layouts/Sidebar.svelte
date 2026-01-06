@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { reset, comment, search } from '$lib/stores/index.svelte';
-	import SearchPanel from './SearchPanel.svelte';
-	import Button from './Button.svelte';
-	import Text from './Text.svelte';
+	import SearchPanel from '../components/SearchPanel.svelte';
+	import Button from '../components/Button.svelte';
+	import Text from '../components/Text.svelte';
 
 	export let className: string = '';
 	const menus = [
