@@ -42,7 +42,10 @@
 		</header>
 
 		<button
-			onclick={() => (search.open = !search.open)}
+			onclick={(e) => {
+				e.stopPropagation();
+				search.open = !search.open;
+			}}
 			class={`flex items-center font-semibold
 			rounded-full bg-transparent lg:bg-gray-100 cursor-pointer
 			${search.open ? 'w-10' : 'w-full'}`}
