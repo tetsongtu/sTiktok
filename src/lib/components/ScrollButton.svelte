@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from './Button.svelte';
+
 	const btns = [-1, 1];
 
 	function scrollTarget() {
@@ -6,6 +8,7 @@
 	}
 
 	function scroll(dir: number) {
+		console.log(dir);
 		scrollTarget()?.scrollBy({
 			top: dir * window.innerHeight,
 			behavior: 'smooth'
@@ -15,11 +18,6 @@
 
 <div class="relative right-4 hidden md:flex flex-col justify-center gap-4 font-bold text-xl">
 	{#each btns as dir}
-		<button
-			on:click={() => scroll(dir)}
-			class="size-12 rounded-full bg-gray-100 cursor-pointer pointer-events-auto"
-		>
-			O
-		</button>
+		<Button onClick={() => scroll(dir)} circle rounded>O</Button>
 	{/each}
 </div>

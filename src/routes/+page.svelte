@@ -16,7 +16,7 @@
 	const loadVideos = async () => {
 		if (isLoading) return;
 		isLoading = true;
-		videos = await loadNextVideoBatch(videos, 5, 109);
+		videos = await loadNextVideoBatch(videos, 5, 55);
 		isLoading = false;
 	};
 

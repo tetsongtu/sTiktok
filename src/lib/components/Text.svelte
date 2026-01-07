@@ -4,7 +4,7 @@
 
 <span
 	class={`cursor-pointer hover:text-gray-600
-	${underline && 'hover:underline'}`}
+	${underline ? 'hover:underline' : ''}`}
 >
 	{@render children()}
 </span>

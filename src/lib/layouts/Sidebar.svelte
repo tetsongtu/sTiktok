@@ -83,7 +83,7 @@
 				{/each}
 			</nav>
 
-			<div id="Login" class={`px-1 py-2 mb-1 w-full ${search.open ? 'hidden' : 'hidden lg:block'}`}>
+			<div id="Login" class={`px-1 py-2 mb-1 ${search.open ? 'hidden' : 'hidden lg:block'}`}>
 				<Button primary className="w-full">Log in</Button>
 			</div>
 		</div>

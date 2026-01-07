@@ -30,10 +30,7 @@
 		>
 			{#each ['Get Coins', 'Get App'] as item}
 				<Tooltip className="xl:hidden" content={item}>
-					<Button className="gap-1 px-2" rounded>
-						<span class="flex size-4 items-center justify-center">O</span>
-						<span class="hidden xl:inline"> {item} </span>
-					</Button>
+					<Button leftIcon="O" rounded>{item}</Button>
 				</Tooltip>
 			{/each}
 			<div class="border-l border-gray-200 h-5 mx-2"></div>

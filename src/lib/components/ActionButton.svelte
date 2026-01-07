@@ -1,21 +1,9 @@
 <script lang="ts">
-	import { comment } from '$lib/stores/index.svelte';
 	import { type VideoData } from '$lib/api/fetchVideo';
-	import { goto } from '$app/navigation';
+	import { createVideoActions } from '$lib/utils/actions';
 
 	export let data: VideoData;
-
-	const users = [
-		{ icon: 'O', label: data.user.nickname, type: 'profile' },
-		{ icon: 'O', label: data.likes_count },
-		{ icon: 'O', label: data.comments_count, type: 'comment' },
-		{ icon: 'O', label: 'bookmark' },
-		{ icon: 'O', label: data.shares_count }
-	];
-
-	function gotoProfile() {
-		goto(`/@${data.user.nickname}?video=${data.id}`);
-	}
+	$: actions = createVideoActions(data);
 </script>
 
 <div
@@ -23,19 +11,18 @@
 	       flex flex-col bg-black/50"
 >
 	<div class="absolute bottom-0 left-2 flex flex-col gap-2">
-		{#each users as item}
+		{#each actions as item}
 			<div class="flex flex-col items-center gap-0.5">
 				<button
-					class="size-10 md:size-12 font-bold text-3xl
-						   rounded-full bg-gray-200 cursor-pointer
-						   flex items-center justify-center"
-					onclick={item.type === 'profile'
-						? gotoProfile
-						: item.type === 'comment'
-							? () => (comment.open = !comment.open)
-							: undefined}
+					class="size-10 md:size-12 rounded-full bg-gray-200
+			       flex items-center justify-center cursor-pointer"
+					onclick={item.onClick}
 				>
-					{item.icon}
+					{#if item.type === 'profile'}
+						<img src={data.user.avatar} alt="" class="size-full rounded-full object-cover" />
+					{:else}
+						<svelte:component this={item.icon} class="size-6 text-gray-800" />
+					{/if}
 				</button>
 
 				<span class="text-sm font-bold text-gray-600 select-none">
