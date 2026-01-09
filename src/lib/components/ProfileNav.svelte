@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import { hoverPlay } from '$lib/actions/hoverPlay';
 
 	export let video: string;
-	export let nickname: string;
-	export let videoId: number;
 	type Tab = 'videos' | 'liked';
 
 	let activeTab: Tab = 'videos';
@@ -37,6 +36,13 @@
 			activeTabElement = node;
 			moveIndicator(node);
 		}
+	}
+
+	function openVideo() {
+		const nickname = page.url.pathname.slice(2);
+		const id = page.url.searchParams.get('video');
+		goto(`/${nickname}/video/${id}`);
+		console.log(nickname, id);
 	}
 </script>
 
@@ -76,7 +82,7 @@
 		{#if activeTab === 'videos'}
 			{#each Array(1) as _}
 				<video
-					on:click={() => goto(`/@${nickname}/video/${videoId}`)}
+					on:click={() => openVideo()}
 					class="w-49 h-65 rounded-xl object-cover cursor-pointer"
 					use:hoverPlay
 					muted

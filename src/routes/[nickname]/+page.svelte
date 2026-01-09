@@ -61,5 +61,5 @@
 		</div>
 	</div>
 
-	<ProfileNav video={data?.file_url!} nickname={data?.user.nickname!} videoId={data?.id!} />
+	<ProfileNav video={data?.file_url!} />
 </div>
