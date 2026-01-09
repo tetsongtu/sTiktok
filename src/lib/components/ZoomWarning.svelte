@@ -22,7 +22,7 @@
 
 {#if showWarning}
 	<div
-		class="fixed top-20 left-1/2 -translate-x-1/2 text-xl
+		class="fixed z-10 top-20 left-1/2 -translate-x-1/2 text-xl
         bg-red-500 rounded-full p-6 flex items-center gap-3"
 	>
 		<span class="">⚠️</span>

@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { hoverPlay } from '$lib/actions/hoverPlay';
 
 	export let video: string;
+	export let nickname: string;
+	export let videoId: number;
 	type Tab = 'videos' | 'liked';
 
 	let activeTab: Tab = 'videos';
@@ -72,7 +75,13 @@
 	<div class="flex flex-wrap gap-4 gap-y-6">
 		{#if activeTab === 'videos'}
 			{#each Array(1) as _}
-				<video src={video} muted class="w-49 h-65 rounded-xl object-cover" use:hoverPlay></video>
+				<video
+					on:click={() => goto(`/@${nickname}/video/${videoId}`)}
+					class="w-49 h-65 rounded-xl object-cover cursor-pointer"
+					use:hoverPlay
+					muted
+					src={video}
+				></video>
 			{/each}
 		{:else}
 			<div>❤️ Liked videos</div>

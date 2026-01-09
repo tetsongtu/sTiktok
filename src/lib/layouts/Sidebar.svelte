@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import { reset, comment, search } from '$lib/stores/index.svelte';
 	import SearchPanel from '../components/SearchPanel.svelte';
 	import Button from '../components/Button.svelte';
@@ -7,13 +8,13 @@
 
 	export let className: string = '';
 	const menus = [
-		{ icon: 'O', label: 'For You' },
-		{ icon: 'O', label: 'Explore' },
-		{ icon: 'O', label: 'Following' },
-		{ icon: 'O', label: 'LIVE' },
-		{ icon: 'O', label: 'Upload' },
-		{ icon: 'O', label: 'Profile' },
-		{ icon: '...', label: 'More' }
+		{ icon: 'O', label: 'For You', href: '/' },
+		{ icon: 'O', label: 'Explore', href: '/explore' },
+		{ icon: 'O', label: 'Following', href: '/following' },
+		{ icon: 'O', label: 'LIVE', href: '/live' },
+		{ icon: 'O', label: 'Upload', href: '/upload' },
+		{ icon: 'O', label: 'Profile', href: '/profile' },
+		{ icon: '...', label: 'More', href: '/more' }
 	];
 
 	function goHomeAndReset() {
@@ -70,16 +71,20 @@
 		<div class="text-lg font-semibold">
 			<nav class="w-full flex gap-1.5 flex-col mt-1.5" id="Menus">
 				{#each menus as item}
-					<div
-						class={`flex items-center gap-4 p-2 rounded-lg cursor-pointer
-					  hover:bg-gray-100 hover:text-red-500
-					${search.open ? 'w-10' : 'w-full lg:w-52'} h-10`}
+					<button
+						onclick={() => goto(item.href)}
+						class="flex items-center gap-4 p-2 h-10 rounded-lg
+						cursor-pointer hover:bg-gray-100 hover:text-red-500"
+						class:w-10={search.open}
+						class:w-full={!search.open}
+						class:lg:w-52={!search.open}
+						class:text-red-500={page.url.pathname === item.href}
 					>
 						<span class="flex items-center justify-center size-6">{item.icon}</span>
 						<span class={`${search.open ? 'hidden' : 'hidden lg:flex'} whitespace-nowrap`}
 							>{item.label}</span
 						>
-					</div>
+					</button>
 				{/each}
 			</nav>
 
