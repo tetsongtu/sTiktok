@@ -1,6 +1,8 @@
 import dance from '$lib/assets/dance.mp4?url';
 import type { VideoData } from '$lib/api/fetchVideo';
 
+const STORAGE_KEY = 'mock_video_list';
+
 const random = (min: number, max: number) =>
 	Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -15,9 +17,8 @@ const randomName = () => {
 	return a + b;
 };
 
-export const mockVideoList: VideoData[] = Array.from(
-	{ length: 12 },
-	(_, i): VideoData => {
+const createMockVideoList = (): VideoData[] => {
+	return Array.from({ length: 55 }, (_, i) => {
 		const nickname = randomName();
 		const avatarStyles = ['thumbs', 'bottts', 'notionists', 'lorelei'];
 
@@ -30,11 +31,29 @@ export const mockVideoList: VideoData[] = Array.from(
 			shares_count: random(0, 1_000),
 			user: {
 				nickname,
-				avatar: `https://api.dicebear.com/7.x/${avatarStyles[Math.floor(Math.random() * avatarStyles.length)]}/svg?seed=${nickname}`,
+				avatar: `https://api.dicebear.com/7.x/${avatarStyles[Math.floor(Math.random() * avatarStyles.length)]
+					}/svg?seed=${nickname}`,
 				followers_count: random(100, 100_000),
 				followings_count: random(10, 5_000),
 				likes_count: random(1_000, 1_000_000)
 			}
 		};
+	});
+};
+
+export const getMockVideoList = (): VideoData[] => {
+	if (typeof localStorage === 'undefined') return [];
+
+	const cached = localStorage.getItem(STORAGE_KEY);
+	if (cached) {
+		try {
+			return JSON.parse(cached);
+		} catch {
+			localStorage.removeItem(STORAGE_KEY);
+		}
 	}
-);
+
+	const fresh = createMockVideoList();
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
+	return fresh;
+};
