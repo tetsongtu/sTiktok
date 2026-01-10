@@ -1,10 +1,12 @@
 <script lang="ts">
 	import HomePage from '../../../+page.svelte';
-	import { comment } from '$lib/stores/index.svelte';
+	import { comment, activeVideo } from '$lib/stores/index.svelte';
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
 	onMount(() => {
 		comment.open = true;
+		activeVideo.id = Number(page.url.searchParams.get('video'));
 	});
 </script>
 

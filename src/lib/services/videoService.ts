@@ -21,10 +21,24 @@ export const fetchVideoMock = async (id: number): Promise<VideoData | null> => {
 export const loadNextVideoBatch = async (
     videos: VideoData[],
     count: number,
-    max: number
+    max: number,
+    firstVideoId?: number | null
 ): Promise<VideoData[]> => {
     const existingIds = new Set(videos.map(v => v.id));
+    let result: VideoData[] = [...videos];
+
+    // 1. Load video theo id chỉ định trước
+    if (firstVideoId && !existingIds.has(firstVideoId)) {
+        const video = await fetchVideoMock(firstVideoId);
+        if (video) {
+            result = [video, ...result];
+            existingIds.add(firstVideoId);
+        }
+    }
+
+    // 2. Load random các video còn lại
     const ids = pickVideoIds(count, max, existingIds);
     const newVideos = await fetchVideosByIds(ids);
-    return [...videos, ...newVideos];
+
+    return [...result, ...newVideos];
 };

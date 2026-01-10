@@ -41,7 +41,7 @@
 	function openVideo() {
 		const nickname = page.url.pathname.slice(2);
 		const id = page.url.searchParams.get('video');
-		goto(`/${nickname}/video/${id}`);
+		goto(`/@${nickname}/video/${id}`);
 		console.log(nickname, id);
 	}
 </script>

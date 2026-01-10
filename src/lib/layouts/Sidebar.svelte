@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { reset, comment, search } from '$lib/stores/index.svelte';
+	import { reset, comment, search, activeVideo } from '$lib/stores/index.svelte';
 	import SearchPanel from '../components/SearchPanel.svelte';
 	import Button from '../components/Button.svelte';
 	import Text from '../components/Text.svelte';
@@ -21,6 +21,13 @@
 		goto('/');
 		if (comment.open) comment.open = false;
 		reset.value = true;
+		activeVideo.id = null;
+	}
+
+	function isForYouRoute(pathname: string) {
+		if (page.url.searchParams.has('video')) return false;
+		if (pathname === '/') return true;
+		return /^\/@[^/]+(\/video\/\d+)?$/.test(pathname);
 	}
 </script>
 
@@ -72,13 +79,21 @@
 			<nav class="w-full flex gap-1.5 flex-col mt-1.5" id="Menus">
 				{#each menus as item}
 					<button
-						onclick={() => goto(item.href)}
+						onclick={() => {
+							if (item.href === '/') {
+								goHomeAndReset();
+							} else {
+								goto(item.href);
+							}
+						}}
 						class="flex items-center gap-4 p-2 h-10 rounded-lg
 						cursor-pointer hover:bg-gray-100 hover:text-red-500"
 						class:w-10={search.open}
 						class:w-full={!search.open}
 						class:lg:w-52={!search.open}
-						class:text-red-500={page.url.pathname === item.href}
+						class:text-red-500={item.href === '/'
+							? isForYouRoute(page.url.pathname)
+							: page.url.pathname.startsWith(item.href)}
 					>
 						<span class="flex items-center justify-center size-6">{item.icon}</span>
 						<span class={`${search.open ? 'hidden' : 'hidden lg:flex'} whitespace-nowrap`}
