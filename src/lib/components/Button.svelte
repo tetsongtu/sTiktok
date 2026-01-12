@@ -6,7 +6,8 @@
 		primary = false,
 		circle = false,
 		leftIcon = null,
-		onClick = null
+		onClick = null,
+		hideLabelOnMobile = false
 	} = $props();
 </script>
 
@@ -22,5 +23,7 @@
 	{#if leftIcon}
 		<span>{leftIcon}</span>
 	{/if}
-	<span class={primary ? '' : 'hidden xl:inline'}>{@render children()}</span>
+	<span class:hidden={hideLabelOnMobile} class:xl:inline={hideLabelOnMobile}>
+		{@render children()}
+	</span>
 </button>
