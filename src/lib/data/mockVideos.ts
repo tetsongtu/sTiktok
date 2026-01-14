@@ -18,7 +18,7 @@ const randomName = () => {
 };
 
 const createMockVideoList = (): VideoData[] => {
-	return Array.from({ length: 55 }, (_, i) => {
+	return Array.from({ length: 10 }, (_, i) => {
 		const nickname = randomName();
 		const avatarStyles = ['thumbs', 'bottts', 'notionists', 'lorelei'];
 
