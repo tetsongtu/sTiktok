@@ -7,20 +7,21 @@
 	import Text from '$lib/components/Text.svelte';
 	import SidebarWrapper from '$lib/components/SidebarWrapper.svelte';
 	import Logo from '$lib/components/Logo.svelte';
+	import configRoutes from '$config/routes';
 
 	export let className: string = '';
 	const menus = [
-		{ icon: 'O', label: 'For You', href: '/' },
-		{ icon: 'O', label: 'Explore', href: '/explore' },
-		{ icon: 'O', label: 'Following', href: '/following' },
-		{ icon: 'O', label: 'LIVE', href: '/live' },
-		{ icon: 'O', label: 'Upload', href: '/upload' },
-		{ icon: 'O', label: 'Profile', href: '/profile' },
-		{ icon: '...', label: 'More', href: '/more' }
+		{ icon: 'O', label: 'For You', href: configRoutes.home },
+		{ icon: 'O', label: 'Explore', href: configRoutes.explore },
+		{ icon: 'O', label: 'Following', href: configRoutes.following },
+		{ icon: 'O', label: 'LIVE', href: configRoutes.live },
+		{ icon: 'O', label: 'Upload', href: configRoutes.upload },
+		{ icon: 'O', label: 'Profile', href: configRoutes.profile },
+		{ icon: '...', label: 'More', href: configRoutes.more }
 	];
 
 	function goHomeAndReset() {
-		goto('/');
+		goto(configRoutes.home);
 		if (comment.open) comment.open = false;
 		reset.value = true;
 		activeVideo.id = null;
@@ -28,7 +29,7 @@
 
 	function isForYouRoute(pathname: string) {
 		if (page.url.searchParams.has('video')) return false;
-		if (pathname === '/') return true;
+		if (pathname === configRoutes.home) return true;
 		return /^\/@[^/]+(\/video\/\d+)?$/.test(pathname);
 	}
 </script>
@@ -71,9 +72,9 @@
 					{#each menus as item}
 						<button
 							onclick={() => {
-								if (item.href === '/') {
+								if (item.href === configRoutes.home) {
 									goHomeAndReset();
-								} else if (item.href === '/upload') {
+								} else if (item.href === configRoutes.upload) {
 									goto(item.href);
 								} else {
 									goto(item.href);
@@ -84,7 +85,7 @@
 							class:w-10={search.open}
 							class:w-full={!search.open}
 							class:lg:w-52={!search.open}
-							class:text-red-500={item.href === '/'
+							class:text-red-500={item.href === configRoutes.home
 								? isForYouRoute(page.url.pathname)
 								: page.url.pathname.startsWith(item.href)}
 						>

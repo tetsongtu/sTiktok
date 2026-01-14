@@ -6,11 +6,12 @@
 	import ZoomWarning from '$lib/components/ZoomWarning.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import UploadLayout from './upload/+page.svelte';
+	import configRoutes from '$config/routes';
 
 	let { children } = $props();
 </script>
 
-{#if page.url.pathname.startsWith('/upload')}
+{#if page.url.pathname.startsWith(configRoutes.upload)}
 	<UploadLayout />
 {:else}
 	<ZoomWarning />
