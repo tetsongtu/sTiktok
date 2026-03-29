@@ -46,8 +46,8 @@
 					e.stopPropagation();
 					search.open = !search.open;
 				}}
-				class={`flex items-center font-semibold
-			rounded-full bg-transparent lg:bg-gray-100 cursor-pointer
+				class={`flex items-center font-semibold overflow-hidden
+			rounded-full bg-transparent lg:bg-gray-100 cursor-pointer transition-all duration-300
 			${search.open ? 'w-10' : 'w-full'}`}
 			>
 				<div
@@ -56,8 +56,8 @@
 				>
 					O
 				</div>
-				<div class={`${search.open ? 'hidden' : 'hidden lg:flex'} flex-1 items-center `}>
-					<div class="text-black/30">Search</div>
+				<div class="hidden lg:flex items-center flex-1 min-w-0">
+					<div class="text-black/30 whitespace-nowrap">Search</div>
 					<div
 						class="size-10 hover:bg-gray-200 rounded-full
 					flex items-center justify-center ml-auto"
@@ -74,8 +74,6 @@
 							onclick={() => {
 								if (item.href === configRoutes.home) {
 									goHomeAndReset();
-								} else if (item.href === configRoutes.upload) {
-									goto(item.href);
 								} else {
 									goto(item.href);
 								}
@@ -102,7 +100,7 @@
 				</div>
 			</div>
 
-			<footer class="hidden lg:flex flex-col gap-2 w-full">
+			<footer class={`${search.open ? 'hidden' : 'hidden lg:flex'} flex-col gap-2 w-full`}>
 				<div class="mt-1 border-t border-gray-200 w-full"></div>
 				<nav
 					class=" p-1 flex flex-col gap-1
